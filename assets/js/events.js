@@ -2,6 +2,7 @@
 
 const error = require("./error");
 const git = require("./git");
+const _ = require("lodash");
 
 // activate all event listeners
 module.exports.activateListeners = () => {
@@ -23,9 +24,21 @@ const search = event => {
     let format = /[a-z]*\/[a-z]*/i;
     if (format.test(term)) {
         let [user, repo] = term.split("/");
-        git.getCommits(user, repo)
-            .then(response => {
-                console.log(response);
+        git.getContributions(user, repo)
+            .then(contribs => {
+                let commitPromises = [];
+                for (let i=0; i<contribs/30; i++) {
+                    commitPromises.push(git.getCommits(user, repo, i+1));
+                }
+                return Promise.all(commitPromises);
+            })
+            .then(commits => {
+                let allCommits = _.flattenDeep(commits);
+                let words = allCommits.map(c => {
+                    return c.split(/[\s-.?!"']/gi);
+                });
+                let allWords = _.flattenDeep(words);
+                console.log(allWords);
             })
             .catch(err => error.display(err));
     } else {
