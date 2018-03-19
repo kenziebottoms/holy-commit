@@ -17,6 +17,7 @@ module.exports = function(grunt) {
                 globalstrict: true,
                 globals: {},
                 browserify: true,
+                loopfunc : true
             },
         },
         sass: {
