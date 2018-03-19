@@ -1,7 +1,7 @@
 {
   "name": "name",
   "version": "1.0.0",
-  "description": "",
+  "description": "![assets/img/nr.jpg](assets/img/nr.jpg)",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,5 +19,13 @@
     "hbsfy": "^2.8.1",
     "http-server": "^0.11.1",
     "matchdep": "^2.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenziebottoms/holy-commit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kenziebottoms/holy-commit/issues"
+  },
+  "homepage": "https://github.com/kenziebottoms/holy-commit#readme"
 }
