@@ -35,10 +35,15 @@ const search = event => {
             .then(commits => {
                 let allCommits = _.flattenDeep(commits);
                 let words = allCommits.map(c => {
-                    return c.split(/[\s-.?!"']/gi);
+                    c = c.replace(/\-\"\/\'\(\)\[\]\{\}\,\:\;\.\!\?/, "");
+                    c = c.replace(/[#-=><+]/gi, " ");
+                    c = c.split(/\s/gi);
+                    return c;
                 });
-                let allWords = _.flattenDeep(words);
-                console.log(allWords);
+                let allWords = _.flattenDeep(words).filter(w => {
+                    return !!w;
+                }).map(w => w.trim());
+                console.log(allWords.join(" "));
             })
             .catch(err => error.display(err));
     } else {
