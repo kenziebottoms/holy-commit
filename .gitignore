@@ -1,6 +1,4 @@
 **node_modules/
 **.sass-cache/
-assets/css
-dist/
 *.xcf
 assets/js/keys.js
